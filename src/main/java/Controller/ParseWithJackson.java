@@ -15,8 +15,8 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 
 
-@WebServlet("/")
-public class MainServlet extends HttpServlet {
+@WebServlet("/jackson")
+public class ParseWithJackson extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -33,7 +33,6 @@ public class MainServlet extends HttpServlet {
                 buffer.append(chars, 0, read);
 
             String result = buffer.toString();
-
             ObjectMapper mapper = new ObjectMapper();
             try {
                 JsonNode taskIdsjsonNode = mapper.readTree(result);
@@ -50,7 +49,7 @@ public class MainServlet extends HttpServlet {
             if (reader != null)
                 reader.close();
         }
-        req.getRequestDispatcher("home.jsp").forward(req, resp);
+        req.getRequestDispatcher("parser.jsp").forward(req, resp);
 
     }
 
